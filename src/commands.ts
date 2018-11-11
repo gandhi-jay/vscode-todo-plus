@@ -29,7 +29,7 @@ const callTodosMethodOptions = {
 
 async function callTodosMethod ( options? ) {
 
-  options = _.isString ( options ) ? { method: options } : options;
+  options = _.isString ( options ) ? { method: options, filter: todo => todo.isBox ()} : options;
   options = _.merge ( {}, callTodosMethodOptions, options );
 
   const textEditor = vscode.window.activeTextEditor,
@@ -156,7 +156,7 @@ function toggleStart () {
     method: 'toggleStart',
     errors: {
       invalid: 'Only todos can be started',
-      filtered: 'Only not done/cancelled todos can be started'
+      filtered: 'done/cancelled todos can not be started'
     }
   });
 
